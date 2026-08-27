@@ -1,20 +1,22 @@
+
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { register } from '../api/auth'
+import { register, login } from '../api/auth'
 import { useAuth } from '../context/AuthContext'
-import { login } from '../api/auth'
-
+import Logo from '../components/Logo'
 
 function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errore, setErrore] = useState('')
+  const [bounce, setBounce] = useState(false)
   const navigate = useNavigate()
   const { login: loginContext } = useAuth()
 
   async function handleSubmit(e) {
     e.preventDefault()
     setErrore('')
+    setBounce(true)
     try {
       await register(email, password)
       const data = await login(email, password)
@@ -23,29 +25,35 @@ function Register() {
     } catch (err) {
       setErrore(err.message)
     }
-  }
+  } 
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Registrazione</h1>
-      {errore && <p>{errore}</p>}
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Registrati</button>
-      <p>Hai già un account? <Link to="/login">Accedi</Link></p>
-    </form>
+    <div className="login-screen">
+      <div className="login-card">
+        <Logo bounce={bounce} onAnimationEnd={() => setBounce(false)} />
+        <h2 className="app-name">Ariadne</h2>
+        <h1>Registrati</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn">Registrati</button>
+        </form>
+        {errore && <div className="login-message error">{errore}</div>}
+        <p> Hai un account? <Link to="/login">Accedi</Link></p>
+      </div>
+    </div>
   )
 }
 
