@@ -5,6 +5,8 @@ import Dashboard from './pages/Dashboard'
 import Task from './pages/Task'
 import Flashcard from './pages/Flashcard'
 import Timer from './pages/Timer'
+import Mazzo from './pages/Mazzo'
+import Studia from './pages/Studia'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -15,6 +17,9 @@ function App() {
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/task" element={<ProtectedRoute><Task /></ProtectedRoute>} />
       <Route path="/flashcard" element={<ProtectedRoute><Flashcard /></ProtectedRoute>} />
+      <Route path="/flashcard/:deckId" element={<ProtectedRoute><Mazzo /></ProtectedRoute>} />
+      <Route path="/flashcard/:deckId/studia" element={<ProtectedRoute><Studia /></ProtectedRoute>} />
+      <Route path="/timer" element={<ProtectedRoute><Timer /></ProtectedRoute>} />
       <Route path="/timer" element={<ProtectedRoute><Timer /></ProtectedRoute>} />
     </Routes>
   )
