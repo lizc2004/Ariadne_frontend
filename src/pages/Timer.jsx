@@ -10,7 +10,9 @@ function formatTime(seconds) {
 function Timer() {
   const [materia, setMateria] = useState('')
   const [minuti, setMinuti] = useState(25)
+  const [minutiPausa, setMinutiPausa] = useState(5)
   const [secondiRimanenti, setSecondiRimanenti] = useState(25 * 60)
+  const [modalita, setModalita] = useState('inattivo') // 'inattivo' | 'studio' | 'pausa'
   const [inCorso, setInCorso] = useState(false)
   const [sessioneId, setSessioneId] = useState(null)
   const [errore, setErrore] = useState('')
@@ -22,20 +24,34 @@ function Timer() {
       setSecondiRimanenti((prev) => {
         if (prev <= 1) {
           clearInterval(intervalRef.current)
-          completaSessioneCorrente()
+          gestisciFineCountdown()
           return 0
         }
         return prev - 1
       })
     }, 1000)
     return () => clearInterval(intervalRef.current)
-  }, [inCorso])
+  }, [inCorso, modalita])
+
+  async function gestisciFineCountdown() {
+    if (modalita === 'studio') {
+      await completaSessioneCorrente()
+      setModalita('pausa')
+      setSecondiRimanenti(minutiPausa * 60)
+      setInCorso(true)
+    } else if (modalita === 'pausa') {
+      setModalita('inattivo')
+      setInCorso(false)
+      setSecondiRimanenti(minuti * 60)
+    }
+  }
 
   async function avvia() {
     setErrore('')
     try {
       const sessione = await iniziaSessione(materia)
       setSessioneId(sessione.id)
+      setModalita('studio')
       setSecondiRimanenti(minuti * 60)
       setInCorso(true)
     } catch (err) {
@@ -43,13 +59,16 @@ function Timer() {
     }
   }
 
-  function pausa() {
+  function pausaTimer() {
     setInCorso(false)
   }
 
   async function ferma() {
     setInCorso(false)
-    await completaSessioneCorrente()
+    if (modalita === 'studio') {
+      await completaSessioneCorrente()
+    }
+    setModalita('inattivo')
     setSecondiRimanenti(minuti * 60)
   }
 
@@ -58,7 +77,6 @@ function Timer() {
     try {
       await completaSessione(sessioneId)
       setSessioneId(null)
-      setInCorso(false)
     } catch (err) {
       setErrore(err.message)
     }
@@ -69,9 +87,14 @@ function Timer() {
       <h1>Timer Pomodoro</h1>
       {errore && <div className="login-message error">{errore}</div>}
 
+      <div className="timer-state">
+        {modalita === 'studio' && 'Studio'}
+        {modalita === 'pausa' && 'Pausa'}
+        {modalita === 'inattivo' && 'Pronta a iniziare'}
+      </div>
       <div className="timer-display">{formatTime(secondiRimanenti)}</div>
 
-      {!inCorso && !sessioneId && (
+      {modalita === 'inattivo' && (
         <div className="row">
           <input
             type="text"
@@ -85,14 +108,21 @@ function Timer() {
             value={minuti}
             onChange={(e) => setMinuti(Number(e.target.value))}
           />
+          <input
+            type="number"
+            min="5"
+            max="15"
+            value={minutiPausa}
+            onChange={(e) => setMinutiPausa(Number(e.target.value))}
+          />
           <button className="btn" onClick={avvia} disabled={!materia}>Avvia</button>
         </div>
       )}
 
-      {sessioneId && (
+      {modalita !== 'inattivo' && (
         <div className="timer-controls">
           {inCorso ? (
-            <button className="btn secondary" onClick={pausa}>Pausa</button>
+            <button className="btn secondary" onClick={pausaTimer}>Pausa</button>
           ) : (
             <button className="btn" onClick={() => setInCorso(true)}>Riprendi</button>
           )}

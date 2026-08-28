@@ -5,8 +5,8 @@
    ============================================================ */
 
 :root {
-  --bg: #f5f7fb;
-  --surface: #ffffff;
+  --bg: #eef1f6;
+  --surface: #fbfcfe;
   --surface-2: #eef2f8;
   --text: #1e2a3a;
   --text-soft: #5b6a80;
@@ -20,10 +20,11 @@
   --danger-soft: #fde0e0;
   --border: #dde4ee;
   --shadow: 0 2px 8px rgba(30, 42, 58, 0.06);
+  --dot: rgba(30, 42, 58, 0.12);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #141822;
     --surface: #1e2433;
     --surface-2: #252c3d;
@@ -39,7 +40,28 @@
     --danger-soft: #3d1f1f;
     --border: #2f3748;
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    --dot: rgba(255, 255, 255, 0.08);
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #141822;
+  --surface: #1e2433;
+  --surface-2: #252c3d;
+  --text: #e8ecf4;
+  --text-soft: #9aa4b8;
+  --accent: #6b8eff;
+  --accent-soft: #2a3660;
+  --success: #3dc888;
+  --success-soft: #1f3a2e;
+  --warning: #f0b356;
+  --warning-soft: #3d2f1a;
+  --danger: #eb6e6e;
+  --danger-soft: #3d1f1f;
+  --border: #2f3748;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --dot: rgba(255, 255, 255, 0.08);
+
 }
 
 * { box-sizing: border-box; }
@@ -48,6 +70,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   background: var(--bg);
+  background-image: radial-gradient(circle, var(--dot) 1px, transparent 1px);
+  background-size: 24px 24px;
   color: var(--text);
   line-height: 1.5;
 }
@@ -547,11 +571,6 @@ textarea { resize: vertical; }
   background: hsl(var(--subject-h, 220), 60%, 55%);
 }
 
-@media (prefers-color-scheme: dark) {
-  .bar-fill.subject-colored {
-    background: hsl(var(--subject-h, 220), 55%, 60%);
-  }
-}
 
 /* ===== Dettagli espandibili ===== */
 
@@ -867,4 +886,5 @@ body.viewing-others #tabs button[data-tab="account"] {
 
 .logo-bounce {
   animation: bounce-gomitolo 0.6s ease;
+}
 }

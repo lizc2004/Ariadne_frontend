@@ -8,19 +8,27 @@ import Timer from './pages/Timer'
 import Mazzo from './pages/Mazzo'
 import Studia from './pages/Studia'
 import ProtectedRoute from './components/ProtectedRoute'
+import Layout from './components/Layout'
 
 function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/task" element={<ProtectedRoute><Task /></ProtectedRoute>} />
-      <Route path="/flashcard" element={<ProtectedRoute><Flashcard /></ProtectedRoute>} />
-      <Route path="/flashcard/:deckId" element={<ProtectedRoute><Mazzo /></ProtectedRoute>} />
-      <Route path="/flashcard/:deckId/studia" element={<ProtectedRoute><Studia /></ProtectedRoute>} />
-      <Route path="/timer" element={<ProtectedRoute><Timer /></ProtectedRoute>} />
-      <Route path="/timer" element={<ProtectedRoute><Timer /></ProtectedRoute>} />
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/task" element={<Task />} />
+        <Route path="/flashcard" element={<Flashcard />} />
+        <Route path="/flashcard/:deckId" element={<Mazzo />} />
+        <Route path="/flashcard/:deckId/studia" element={<Studia />} />
+        <Route path="/timer" element={<Timer />} />
+      </Route>
     </Routes>
   )
 }
