@@ -1,11 +1,11 @@
-function Logo({ bounce, onAnimationEnd }) {
+function Logo({ bounce, onAnimationEnd, size = 64, className = '' }) {
   return (
     <svg
-      className={bounce ? 'logo-bounce' : ''}
+      className={`${className} ${bounce ? 'logo-bounce' : ''}`.trim()}
       onAnimationEnd={onAnimationEnd}
       viewBox="0 0 100 100"
-      width="64"
-      height="64"
+      width={size}
+      height={size}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>

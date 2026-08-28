@@ -12,3 +12,7 @@ export function completaSessione(id) {
     method: 'PATCH',
   })
 }
+
+export function getSessioniInIntervallo(da, a) {
+  return apiFetch(`/api/sessioni?da=${da}&a=${a}`)
+}
