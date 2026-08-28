@@ -20,7 +20,7 @@ function Register() {
     try {
       await register(email, password)
       const data = await login(email, password)
-      loginContext(data.accessToken, data.refreshToken)
+      loginContext(data.token, data.refreshToken)
       navigate('/')
     } catch (err) {
       setErrore(err.message)

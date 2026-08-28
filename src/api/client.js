@@ -14,8 +14,8 @@ async function refreshAccessToken() {
     throw new Error('Sessione scaduta')
   }
   const data = await res.json()
-  setTokens(data.accessToken, refreshToken)
-  return data.accessToken
+  setTokens(data.token, refreshToken)
+  return data.token
 }
 
 export async function apiFetch(endpoint, options = {}) {
