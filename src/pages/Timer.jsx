@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { iniziaSessione, completaSessione } from '../api/sessioni'
+import Slancio from '../components/Slancio'
 
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60).toString().padStart(2, '0')
@@ -83,6 +84,7 @@ function Timer() {
   }
 
   return (
+    <>
     <div className="card" style={{ margin: '20px' }}>
       <h1>Timer Pomodoro</h1>
       {errore && <div className="login-message error">{errore}</div>}
@@ -127,9 +129,11 @@ function Timer() {
             <button className="btn" onClick={() => setInCorso(true)}>Riprendi</button>
           )}
           <button className="btn danger" onClick={ferma}>Termina</button>
-        </div>
-      )}
-    </div>
+          </div>
+        )}
+      </div>
+      <Slancio />
+    </>
   )
 }
 

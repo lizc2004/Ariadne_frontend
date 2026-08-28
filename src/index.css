@@ -887,4 +887,30 @@ body.viewing-others #tabs button[data-tab="account"] {
 .logo-bounce {
   animation: bounce-gomitolo 0.6s ease;
 }
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.logo-spento {
+  filter: grayscale(1);
+  opacity: 0.35;
+}
+
+.slancio-card {
+  padding: 28px;
+}
+
+.slancio-numero {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
 }
