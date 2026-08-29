@@ -26,3 +26,6 @@ export function getRicevute() {
 export function getConcesse() {
   return apiFetch('/api/condivisioni/concesse')
 }
+export function getProgressi(id) {
+  return apiFetch(`/api/condivisioni/${id}/progressi`)
+}
