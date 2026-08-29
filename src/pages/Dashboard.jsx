@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { getTasks } from '../api/tasks'
 import { getDecks, getCardsByDeck } from '../api/decks'
 import Slancio from '../components/Slancio'
+import SubjectTag from '../components/SubjectTag'
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10)
@@ -54,7 +55,7 @@ function Dashboard() {
               <div key={t.id} className="task">
                 <div className="task-body">
                   <div className="task-title">{t.titolo}</div>
-                  <div className="task-meta">{t.materia} · {t.scadenza}</div>
+                  <div className="task-meta"><SubjectTag materia={t.materia} /> · {t.scadenza}</div>
                 </div>
               </div>
             ))}
