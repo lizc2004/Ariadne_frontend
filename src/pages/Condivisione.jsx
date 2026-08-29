@@ -6,13 +6,16 @@ import {
   revocaCondivisione,
   getRicevute,
   getConcesse,
+    getProgressi,
 } from '../api/condivisioni'
+import { Link } from 'react-router-dom'
 
 function Condivisione() {
   const [email, setEmail] = useState('')
   const [ricevute, setRicevute] = useState([])
   const [concesse, setConcesse] = useState([])
   const [errore, setErrore] = useState('')
+    const [progressi, setProgressi] = useState({})
 
   useEffect(() => {
     carica()
@@ -65,6 +68,14 @@ function Condivisione() {
       setErrore(err.message)
     }
   }
+    async function handleVediProgressi(id) {
+        try {
+            const dati = await getProgressi(id)
+            setProgressi((prev) => ({ ...prev, [id]: dati }))
+        } catch (err) {
+            setErrore(err.message)
+        }
+    }
 
   return (
     <div className="card" style={{ margin: '20px' }}>
@@ -111,17 +122,28 @@ function Condivisione() {
       ) : (
         <div className="stack">
           {concesse.map((c) => (
-            <div key={c.id} className="deck-item">
-              <div className="deck-info">
-                <div className="deck-name">{c.emailOwner}</div>
-                <div className="deck-stats">{c.stato}</div>
+              <div key={c.id} className="deck-item">
+                  <div className="deck-info">
+                      <div className="deck-name">{c.emailOwner}</div>
+                      <div className="deck-stats">{c.stato}</div>
+                      {progressi[c.id] && (
+                          <div className="small muted mt-s">
+                              {progressi[c.id].taskInScadenza.length} task in scadenza · {progressi[c.id].carteDaRipassare} carte da ripassare
+                          </div>
+                      )}
+                  </div>
+                  <div className="deck-actions">
+                      {c.stato === 'ACCETTATO' && (
+                          <>
+                              <button className="btn small" onClick={() => handleVediProgressi(c.id)}>Anteprima</button>
+                              <Link to={`/condivisione/${c.id}/progressi`} className="btn small secondary">Apri</Link>
+                          </>
+                      )}
+                      {c.stato !== 'REVOCATO' && (
+                          <button className="btn small danger" onClick={() => handleRevoca(c.id)}>Revoca</button>
+                      )}
+                  </div>
               </div>
-              {c.stato !== 'REVOCATO' && (
-                <div className="deck-actions">
-                  <button className="btn small danger" onClick={() => handleRevoca(c.id)}>Revoca</button>
-                </div>
-              )}
-            </div>
           ))}
         </div>
       )}

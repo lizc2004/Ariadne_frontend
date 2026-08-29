@@ -10,6 +10,8 @@ import Studia from './pages/Studia'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Condivisione from './pages/Condivisione'
+import ProgressiCondivisi from './pages/ProgressiCondivisi'
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path="/flashcard/:deckId/studia" element={<Studia />} />
         <Route path="/timer" element={<Timer />} />
         <Route path="/condivisione" element={<Condivisione />} />
+        <Route path="/condivisione/:id/progressi" element={<ProgressiCondivisi />} />
       </Route>
     </Routes>
   )
