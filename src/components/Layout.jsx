@@ -5,6 +5,7 @@ import { logout as logoutApi } from '../api/auth'
 import { getRefreshToken } from '../api/tokens'
 import Logo from './Logo'
 
+
 function iniziali(email) {
   if (!email) return '?'
   return email.slice(0, 2).toUpperCase()
@@ -46,6 +47,7 @@ function Layout() {
           <Link to="/task">Task</Link>
           <Link to="/flashcard">Flashcard</Link>
           <Link to="/timer">Timer</Link>
+          <Link to="/condivisione">Condivisione</Link>
         </nav>
       </header>
       <Outlet />

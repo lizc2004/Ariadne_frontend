@@ -9,6 +9,7 @@ import Mazzo from './pages/Mazzo'
 import Studia from './pages/Studia'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
+import Condivisione from './pages/Condivisione'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         element={
           <ProtectedRoute>
             <Layout />
+
           </ProtectedRoute>
         }
       >
@@ -28,6 +30,7 @@ function App() {
         <Route path="/flashcard/:deckId" element={<Mazzo />} />
         <Route path="/flashcard/:deckId/studia" element={<Studia />} />
         <Route path="/timer" element={<Timer />} />
+        <Route path="/condivisione" element={<Condivisione />} />
       </Route>
     </Routes>
   )
