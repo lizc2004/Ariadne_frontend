@@ -189,6 +189,8 @@ section.active { display: block; }
 
 .btn {
   background: var(--accent);
+  position: relative; 
+  overflow: hidden;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -206,6 +208,22 @@ section.active { display: block; }
 .btn.small { padding: 6px 10px; font-size: 13px; }
 .btn.danger { background: var(--danger); }
 .btn.success { background: var(--success); }
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 130%;
+}
 
 /* ===== Input di base ===== */
 
@@ -709,19 +727,21 @@ details[open] summary { margin-bottom: 8px; }
 .login-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  max-width: 420px;
-  width: 100%;
+  border-radius: 50%;
+  width: 560px;
+  min-height: 560px;
   box-shadow: var(--shadow);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
-.login-card h1 {
-  margin: 0 0 8px;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--text-soft);
+.login-card > * {
+  width: 100%;
+  max-width: 260px;
 }
 
 .login-card p {
@@ -919,6 +939,15 @@ body.viewing-others #tabs button[data-tab="account"] {
     flex-direction: column;
     align-items: stretch;
   }
+
+  @media (max-width: 600px) {
+  .login-card { width: 400px; min-height: 400px; }
+}
+
+@media (max-width: 420px) {
+  .login-card { width: 320px; min-height: 320px; padding: 28px; }
+  .login-card > * { max-width: 220px; }
+}
 
   nav {
     flex-wrap: wrap;
