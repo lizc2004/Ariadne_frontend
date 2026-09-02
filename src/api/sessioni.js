@@ -1,0 +1,18 @@
+import { apiFetch } from './client'
+
+export function iniziaSessione(materia) {
+  return apiFetch('/api/sessioni', {
+    method: 'POST',
+    body: JSON.stringify({ materia }),
+  })
+}
+
+export function completaSessione(id) {
+  return apiFetch(`/api/sessioni/${id}/completa`, {
+    method: 'PATCH',
+  })
+}
+
+export function getSessioniInIntervallo(da, a) {
+  return apiFetch(`/api/sessioni?da=${da}&a=${a}`)
+}
