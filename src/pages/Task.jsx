@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getTasks, createTask, toggleTask, deleteTask } from '../api/tasks'
+import SubjectTag from '../components/SubjectTag'
 
 function Task() {
   const [tasks, setTasks] = useState([])
@@ -98,7 +99,7 @@ function Task() {
             />
             <div className="task-body">
               <div className="task-title">{task.titolo}</div>
-              <div className="task-meta">{task.materia} · {task.scadenza} · {task.priorita}</div>
+              <div className="task-meta"><SubjectTag materia={task.materia} /> · {task.scadenza} · {task.priorita}</div>
             </div>
             <button className="task-delete" onClick={() => handleDelete(task.id)}>×</button>
           </div>

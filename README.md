@@ -1,16 +1,42 @@
-# React + Vite
+# Ariadne — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interfaccia React per Ariadne. Consuma l'[API backend](https://github.com/lizc2004/Ariadne) separata, scritta in Spring Boot.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack tecnologico
 
-## React Compiler
+- React 19 + Vite
+- React Router (con nested routes e layout condiviso)
+- CSS puro con variabili custom per il tema — nessun framework CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Struttura
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── api/          # client fetch, un file per dominio
+├── components/   # componenti riusabili (Layout, Logo, SubjectTag, Slancio...)
+├── context/      # AuthContext, ThemeContext
+├── pages/        # una vista per rotta
+└── utils/        # logica pura riusabile
+```
+
+---
+
+## Funzionalità
+
+- Login / registrazione
+- Task, flashcard con studio SM-2, timer Pomodoro
+- Condivisione dei progressi con altri utenti (su consenso)
+- Tema chiaro/scuro con toggle manuale
+- Colori automatici per materia
+- Slancio di studio (giorni consecutivi, senza notifiche negative se si salta un giorno)
+
+---
+
+## Roadmap
+
+- Generazione di mappe concettuali via AI
+- Deploy in produzione
