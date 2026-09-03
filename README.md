@@ -2,6 +2,8 @@
 
 Interfaccia React per Ariadne. Consuma l'[API backend](https://github.com/lizc2004/Ariadne) separata, scritta in Spring Boot.
 
+**Live:** [ariadnestudy.netlify.app](https://ariadnestudy.netlify.app) — il backend è su Render free tier e si "risveglia" dopo inattività: la prima richiesta può richiedere fino a 50 secondi.
+
 ---
 
 ## Stack tecnologico
@@ -39,4 +41,3 @@ src/
 ## Roadmap
 
 - Generazione di mappe concettuali via AI
-- Deploy in produzione
