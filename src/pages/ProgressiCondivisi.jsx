@@ -48,7 +48,7 @@ function ProgressiCondivisi() {
         {slancio > 0 && (
           <p><span className="slancio-numero">{slancio}</span> {slancio === 1 ? 'giorno' : 'giorni'} di studio di fila 🔥</p>
         )}
-        <div className="row" style={{ justifyContent: 'center', gap: '14px' }}>
+        <div className="slancio-week">
           {settimana.map((g, i) => (
             <div key={i} style={{ textAlign: 'center', flex: '0 0 auto' }}>
               <Logo size={38} className={g.studiato ? '' : 'logo-spento'} />
@@ -57,7 +57,7 @@ function ProgressiCondivisi() {
           ))}
         </div>
         {badge.length > 0 && (
-          <div className="row mt-m">
+          <div className="badge-row mt-m">
             {badge.map((soglia) => (
               <span key={soglia} className="tag ok">{soglia} giorni</span>
             ))}

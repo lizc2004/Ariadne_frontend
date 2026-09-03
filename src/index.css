@@ -132,7 +132,7 @@ nav {
 
 nav::-webkit-scrollbar { display: none; }
 
-nav button {
+nav a {
   background: transparent;
   border: none;
   padding: 10px 16px;
@@ -145,7 +145,7 @@ nav button {
   transition: color 0.15s, border-color 0.15s;
 }
 
-nav button.active {
+nav a.active {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
@@ -890,7 +890,7 @@ body.viewing-others #tabs button[data-tab="account"] {
 @media (max-width: 500px) {
   main { padding: 12px; }
   .timer-display { font-size: 56px; }
-  nav button { padding: 8px 10px; font-size: 14px; }
+  nav a { padding: 8px 10px; font-size: 14px; }
   .mindmap-preview { min-height: 150px; }
   .login-card { padding: 24px; }
   .account-info { max-width: 100px; }
@@ -934,23 +934,36 @@ body.viewing-others #tabs button[data-tab="account"] {
   font-weight: 700;
   color: var(--accent);
 }
+
+.slancio-week {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 @media (max-width: 480px) {
   .row {
     flex-direction: column;
     align-items: stretch;
   }
 
-  @media (max-width: 600px) {
+  nav {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+@media (max-width: 600px) {
   .login-card { width: 400px; min-height: 400px; }
 }
 
 @media (max-width: 420px) {
   .login-card { width: 320px; min-height: 320px; padding: 28px; }
   .login-card > * { max-width: 220px; }
-}
-
-  nav {
-    flex-wrap: wrap;
-    overflow-x: visible;
-  }
 }
