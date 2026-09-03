@@ -43,7 +43,7 @@ function Layout() {
             <button className="btn ghost" onClick={handleLogout}>Esci</button>
           </div>
         </div>
-        <nav className="row">
+        <nav>
           <Link to="/">Oggi</Link>
           <Link to="/task">Task</Link>
           <Link to="/flashcard">Flashcard</Link>
