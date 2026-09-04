@@ -91,7 +91,12 @@ function Task() {
       </form>
 
       <div className="stack">
-        {tasks.map((task) => (
+        {[...tasks]
+          .sort((a, b) => {
+            if (a.completato !== b.completato) return a.completato ? 1 : -1
+            return a.scadenza.localeCompare(b.scadenza)
+          })
+          .map((task) => (
           <div key={task.id} className={`task ${task.completato ? 'done' : ''}`}>
             <div
               className={`task-check ${task.completato ? 'checked' : ''}`}
