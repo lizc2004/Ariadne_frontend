@@ -48,6 +48,7 @@ function Layout() {
           <Link to="/task">Task</Link>
           <Link to="/flashcard">Flashcard</Link>
           <Link to="/timer">Timer</Link>
+          <Link to="/mappa">Mappa</Link>
           <Link to="/condivisione">Condivisione</Link>
         </nav>
       </header>
