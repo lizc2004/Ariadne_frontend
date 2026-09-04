@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Condivisione from './pages/Condivisione'
 import ProgressiCondivisi from './pages/ProgressiCondivisi'
+import Mappa from './pages/Mappa'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/flashcard/:deckId" element={<Mazzo />} />
         <Route path="/flashcard/:deckId/studia" element={<Studia />} />
         <Route path="/timer" element={<Timer />} />
+        <Route path="/mappa" element={<Mappa />} />
         <Route path="/condivisione" element={<Condivisione />} />
         <Route path="/condivisione/:id/progressi" element={<ProgressiCondivisi />} />
       </Route>
