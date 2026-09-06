@@ -229,6 +229,8 @@ section.active { display: block; }
 
 input, select, textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -242,6 +244,13 @@ input:focus, select:focus, textarea:focus {
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* iOS Safari a volte ignora width:100% sul widget nativo di input[type=date],
+   facendolo sporgere dal contenitore: forziamo il box model standard. */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 textarea { resize: vertical; }
