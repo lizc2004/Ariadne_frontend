@@ -11,6 +11,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Condivisione from './pages/Condivisione'
 import ProgressiCondivisi from './pages/ProgressiCondivisi'
+import RichiediReset from './pages/RichiediReset'
+import ResetPassword from './pages/ResetPassword'
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/richiedi-reset" element={<RichiediReset />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route
         element={
           <ProtectedRoute>
