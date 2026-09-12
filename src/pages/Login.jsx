@@ -49,6 +49,7 @@ function Login() {
           <button type="submit" className="btn">Accedi</button>
         </form>
         {errore && <div className="login-message error">{errore}</div>}
+        <p><Link to="/richiedi-reset">Password dimenticata?</Link></p>
         <p>Non hai un account? <Link to="/register">Registrati</Link></p>
       </div>
     </div>
