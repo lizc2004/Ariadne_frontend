@@ -903,6 +903,14 @@ body.viewing-others #tabs button[data-tab="account"] {
   .mindmap-preview { min-height: 150px; }
   .login-card { padding: 24px; }
   .account-info { max-width: 100px; }
+   .share-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .share-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
 }
 
 @keyframes bounce-gomitolo {
