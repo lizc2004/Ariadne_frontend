@@ -505,8 +505,8 @@ textarea { resize: vertical; }
   background: var(--surface);
 }
 
-.deck-info { flex: 1; }
-.deck-name { font-weight: 500; }
+.deck-info { flex: 1; min-width: 0; }
+.deck-name { font-weight: 500; overflow-wrap: break-word; }
 .deck-stats { font-size: 13px; color: var(--text-soft); margin-top: 2px; }
 .deck-actions { display: flex; gap: 4px; }
 
