@@ -868,6 +868,7 @@ body.viewing-others #tabs button[data-tab="account"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px 12px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -903,11 +904,11 @@ body.viewing-others #tabs button[data-tab="account"] {
   .mindmap-preview { min-height: 150px; }
   .login-card { padding: 24px; }
   .account-info { max-width: 100px; }
-   .share-row {
+  .deck-item {
     flex-direction: column;
     align-items: stretch;
   }
-  .share-actions {
+  .deck-actions {
     flex-wrap: wrap;
     justify-content: flex-end;
   }
